@@ -61,7 +61,7 @@ function Sidebar({ selected, setSelected }: {
       <div className="p-8 border-t border-slate-50">
         <h2 className="text-3xl font-bold tracking-tight leading-10">Wheels of Joy</h2>
         <p>
-          "Wheels of Joy" is a charitable initiative designed to provide
+          Wheels of Joy is a charitable initiative designed to provide
           underprivileged children with bicycles, opening up a world
           of adventure, freedom, and opportunity. This project is driven by
           the belief that every child should be able to experience the joy

@@ -1,5 +1,5 @@
 
-export default {
+const styles = {
   "version": 8,
   "sources": {
     "openmaptiles": {
@@ -1384,3 +1384,4 @@ export default {
   "center": [147.04699683281774, -35.219516867416026],
   "zoom": 6.930617222533038
 }
+export default styles

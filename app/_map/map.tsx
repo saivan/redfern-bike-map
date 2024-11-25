@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { initialPath } from './path'
@@ -19,25 +19,20 @@ export const MapComponent: React.FC<MapComponentProps> = ({ highlighted }) => {
   const [coordinates, setCoordinates] = useState<[number, number][]>([])
   const [pathCount, setPathCount] = useState(initialPath.length)
 
-  const getPathStyle = (index: number) => ({
+  const getPathStyle = useCallback((index: number) => ({
     color: highlighted === null || highlighted === index ? '#059669' : '#94a3b8',
     width: highlighted === null || highlighted === index ? 28 : 8
-  })
+  }), [highlighted])
 
   useEffect(() => {
     if (mapContainerRef.current) {
       const map = new maplibregl.Map({
         container: mapContainerRef.current,
-        style,
+        style: style as maplibregl.StyleSpecification,
         center: [151.20799137790868, -33.90345518308053],
         zoom: 15.68,
         pitch: 55.55,
       })
-
-      setInterval(() => {
-        console.log(map.getCenter(), map.getZoom(), map.getPitch())
-        
-      }, 500);
 
       mapRef.current = map
 
@@ -113,6 +108,7 @@ export const MapComponent: React.FC<MapComponentProps> = ({ highlighted }) => {
         map.remove()
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Update path colors when highlighted prop changes
@@ -136,7 +132,7 @@ export const MapComponent: React.FC<MapComponentProps> = ({ highlighted }) => {
         }
       })
     }
-  }, [highlighted])
+  }, [highlighted, getPathStyle])
 
   // Separate useEffect for key handling
   useEffect(() => {
