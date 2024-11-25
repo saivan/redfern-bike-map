@@ -29,10 +29,16 @@ export const MapComponent: React.FC<MapComponentProps> = ({ highlighted }) => {
       const map = new maplibregl.Map({
         container: mapContainerRef.current,
         style: style as maplibregl.StyleSpecification,
-        center: [151.20799137790868, -33.90345518308053],
-        zoom: 15.68,
+        center: [151.20557027095458, -33.901891732673704],
+        zoom: 15.466,
         pitch: 55.55,
       })
+
+      if (editMode) {
+        setInterval(() => {
+          console.log(map.getCenter(), map.getZoom(), map.getPitch())
+        }, 800)
+      }
 
       mapRef.current = map
 

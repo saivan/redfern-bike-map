@@ -55,7 +55,14 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+			screens: {
+        // Define custom screens for smaller than certain breakpoints
+        '<sm': { 'max': '639px' }, // Applies to screens smaller than 640px
+        '<md': { 'max': '767px' }, // Applies to screens smaller than 768px
+        '<lg': { 'max': '1023px' }, // Applies to screens smaller than 1024px
+        '<xl': { 'max': '1279px' }, // Applies to screens smaller than 1280px
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],
